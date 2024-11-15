@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface UserInfo {
-  // Define the structure of userInfo based on your application needs
+
   id?: string;
   name?: string;
   email?: string;
-  // Add other fields as necessary
+
 }
 
 interface AuthState {

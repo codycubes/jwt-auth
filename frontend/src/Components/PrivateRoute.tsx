@@ -1,12 +1,11 @@
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store'; // Adjust the path based on your store file location
+import { RootState } from '../store'; 
 
 interface AuthState {
   userInfo: {
     name: string;
     email: string;
-    // Add any other properties your `userInfo` object contains
   } | null;
 }
 

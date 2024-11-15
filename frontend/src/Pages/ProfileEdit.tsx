@@ -4,7 +4,7 @@ import { useUpdateUserMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 // interface ProfileData {
@@ -32,6 +32,7 @@ const ProfileEdit: React.FC = () => {
       setEmail(userInfo.email);
     }
   }, [userInfo]);
+  const navigate = useNavigate();
 
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
@@ -51,7 +52,10 @@ const ProfileEdit: React.FC = () => {
       } catch (err: any) {
         toast.error(err?.data?.message || err.message);
       }
+
+
     }
+    navigate("/")
   };
 
   return (

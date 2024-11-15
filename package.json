@@ -22,7 +22,8 @@
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.8.1",
-    "react-spinners": "^0.14.1"
+    "react-spinners": "^0.14.1",
+    "vercel": "^39.0.2"
   },
   "devDependencies": {
     "concurrently": "^9.1.0",

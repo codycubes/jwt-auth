@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch, TypedUseSelectorHook } from "react-redux";
-import { RootState } from "../store"; // Adjust the import to match your Redux store location
+import { RootState } from "../store"; 
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
 
@@ -26,7 +26,6 @@ const Navbar: React.FC = () => {
     }
   };
 
-  // Close the dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -72,7 +71,7 @@ const Navbar: React.FC = () => {
                 className="block px-4 py-2 text-sm hover:bg-gray-100"
                 onClick={() => setIsDropdownOpen(false)}
               >
-                Profile
+                Edit Profile
               </Link>
               <button
                 onClick={logoutHandler}

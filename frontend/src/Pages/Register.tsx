@@ -6,7 +6,7 @@ import { setCredentials } from '../slices/authSlice';
 import { SquareLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
 
-import { RootState } from '../store'; // Adjust according to your store setup
+import { RootState } from '../store'; 
 
 const Registration: React.FC = () => {
   const [name, setName] = useState<string>('');

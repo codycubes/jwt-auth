@@ -13,8 +13,6 @@ connectDB();
 const port = process.env.PORT || 5000;
 const app = express();
 
-// const __dirname = path.resolve();
-
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));

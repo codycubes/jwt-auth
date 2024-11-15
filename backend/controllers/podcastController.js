@@ -12,7 +12,7 @@ export const getPodcast = async (req, res) => {
 };
 
 export const createPodcast = async (req, res) => {
-	const podcast = req.body; // user will send this data
+	const podcast = req.body; 
 
 	if (!podcast.name || 
         !podcast.host || 

@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLoginMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
 import { toast } from 'react-toastify';
-import { RootState, AppDispatch } from '../store'; // Assuming these types are defined in store
+import { RootState, AppDispatch } from '../store'; 
 import Loader from '../Components/Loader';
 interface LoginResponse {
   id: string;
   name: string;
   email: string;
   token: string;
-  // Add any other fields expected from the login response
+
 }
 
 const Login: React.FC = () => {

@@ -2,7 +2,7 @@ import { apiSlice } from './apiSlice';
 
 const USERS_URL = '/api/users';
 
-// Define the expected data structures for each mutation as needed
+
 interface LoginRequest {
   email: string;
   password: string;
@@ -18,7 +18,7 @@ interface UpdateUserRequest {
   name?: string;
   email?: string;
   password?: string;
-  // Add any other fields that the update might include
+
 }
 
 interface UserResponse {
@@ -26,7 +26,7 @@ interface UserResponse {
   name: string;
   email: string;
   token: string;
-  // Add any other fields returned by the server
+
 }
 
 export const userApiSlice = apiSlice.injectEndpoints({
