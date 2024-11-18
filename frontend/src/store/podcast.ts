@@ -5,7 +5,7 @@ interface Podcast {
   name: string;
   host: string;
   description: string;
-  duration: string;
+  genre: string;
   image: string;
 }
 
@@ -27,7 +27,7 @@ export const usePodcastStore = create<PodcastStore>((set) => ({
       !newPodcast.name ||
       !newPodcast.host ||
       !newPodcast.description ||
-      !newPodcast.duration ||
+      !newPodcast.genre ||
       !newPodcast.image
     ) {
       return { success: false, message: "Please fill in all fields." };

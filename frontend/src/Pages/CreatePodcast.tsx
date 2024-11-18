@@ -3,12 +3,11 @@ import { usePodcastStore } from '../store/podcast';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 
-
 interface Podcast {
   name: string;
   host: string;
   description: string;
-  duration: string;
+  genre: string;
   image: string;
 }
 
@@ -17,42 +16,49 @@ const CreatePodcast: React.FC = () => {
     name: '',
     host: '',
     description: '',
-    duration: '',
+    genre: '',
     image: '',
   });
 
   const { createPodcast } = usePodcastStore();
 
-  const handleAddProduct = async (event: React.FormEvent) => {
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setNewPodcast({ ...newPodcast, image: reader.result as string });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleAddPodcast = async (event: React.FormEvent) => {
     event.preventDefault(); 
     const { success } = await createPodcast(newPodcast);
 
     if (success) {
-      toast.success("Podacast Created Successfully");
+      toast.success("Podcast Created Successfully");
     } else {
-      toast.error("An Error Occured on Creation");
+      toast.error("An Error Occurred on Creation");
     }
 
-    setNewPodcast({ name: '', host: '', description: '', duration: '', image: '' });
+    setNewPodcast({ name: '', host: '', description: '', genre: '', image: '' });
   };
 
   return (
-    <div className="min-h-screen text-white flex flex-col p-6">
-      {/* Back Arrow */}
+    <div className="min-h-screen flex items-center justify-center text-white font-raleway flex-col p-6">
       <Link to={'/'}>
         <button className="w-10 h-10 bg-gray-800 rounded-full flex justify-center items-center mb-6">
           <span className="text-5xl hover:scale-150">←</span>
         </button>
       </Link>
 
-      {/* Title */}
-      <h1 className="text-8xl font-bold mb-8">Create Podcast</h1>
+      <h2 className="text-7xl my-10 font-black text-center">Create Podcast</h2>
 
-      {/* Form */}
-      <form className="space-y-6" onSubmit={handleAddProduct}>
-        {/* Name */}
+      <form className="space-y-6" onSubmit={handleAddPodcast}>
         <div>
-          <label className="block text-sm font-medium mb-2" htmlFor="name">
+          <label className="block text-sm font-bold" htmlFor="name">
             Name
           </label>
           <input
@@ -62,13 +68,12 @@ const CreatePodcast: React.FC = () => {
             required
             value={newPodcast.name}
             onChange={(e) => setNewPodcast({ ...newPodcast, name: e.target.value })}
-            className="w-full bg-gray-800 p-2 rounded border border-white focus:outline-none focus:ring-2 focus:ring-white"
+            className="bg-transparent w-full px-3 text-white py-2 mt-1 border rounded-md shadow-sm sm:text-sm"
           />
         </div>
 
-        {/* Host */}
         <div>
-          <label className="block text-sm font-medium mb-2" htmlFor="host">
+          <label className="block text-sm font-bold" htmlFor="host">
             Host
           </label>
           <input
@@ -78,13 +83,12 @@ const CreatePodcast: React.FC = () => {
             required
             value={newPodcast.host}
             onChange={(e) => setNewPodcast({ ...newPodcast, host: e.target.value })}
-            className="w-full bg-gray-800 p-2 rounded border border-white focus:outline-none focus:ring-2 focus:ring-white"
+            className="bg-transparent w-full px-3 text-white py-2 mt-1 border rounded-md shadow-sm sm:text-sm"
           />
         </div>
 
-        {/* Description */}
         <div>
-          <label className="block text-sm font-medium mb-2" htmlFor="description">
+          <label className="block text-sm font-bold" htmlFor="description">
             Description
           </label>
           <input
@@ -94,45 +98,42 @@ const CreatePodcast: React.FC = () => {
             required
             value={newPodcast.description}
             onChange={(e) => setNewPodcast({ ...newPodcast, description: e.target.value })}
-            className="w-full bg-gray-800 p-2 rounded border border-white focus:outline-none focus:ring-2 focus:ring-white"
+            className="bg-transparent w-full px-3 text-white py-2 mt-1 border rounded-md shadow-sm sm:text-sm"
           />
         </div>
 
-        {/* Duration */}
         <div>
-          <label className="block text-sm font-medium mb-2" htmlFor="duration">
-            Duration
+          <label className="block text-sm font-bold" htmlFor="genre">
+            Genre
           </label>
           <input
-            id="duration"
-            name="duration"
+            id="genre"
+            name="genre"
             type="text"
             required
-            value={newPodcast.duration}
-            onChange={(e) => setNewPodcast({ ...newPodcast, duration: e.target.value })}
-            className="w-full bg-gray-800 p-2 rounded border border-white focus:outline-none focus:ring-2 focus:ring-white"
+            value={newPodcast.genre}
+            onChange={(e) => setNewPodcast({ ...newPodcast, genre: e.target.value })}
+            className="bg-transparent w-full px-3 text-white py-2 mt-1 border rounded-md shadow-sm sm:text-sm"
           />
         </div>
 
-        {/* Image */}
         <div>
-          <label className="block text-sm font-medium mb-2" htmlFor="image">
+          <label className="block text-sm font-bold" htmlFor="image">
             Image
           </label>
           <input
             id="image"
             name="image"
-            type="text"
+            type="file"
             required
-            value={newPodcast.image}
-            onChange={(e) => setNewPodcast({ ...newPodcast, image: e.target.value })}
-            className="w-full bg-gray-800 p-2 rounded border border-white focus:outline-none focus:ring-2 focus:ring-white"
+            onChange={handleImageChange}
+            className="bg-transparent w-full px-3 text-white py-2 mt-1 border rounded-md shadow-sm sm:text-sm"
           />
         </div>
 
         <button
           type="submit"
-          className="flex justify-center w-full px-4 py-2 font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="flex justify-center w-full px-4 mb-8 py-2 font-bold text-white bg-red-700 border border-transparent rounded-full shadow-sm hover:scale-110 focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
         >
           Create Podcast
         </button>

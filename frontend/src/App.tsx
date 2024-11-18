@@ -13,7 +13,7 @@ import CreatePodcast from './Pages/CreatePodcast';
 
 const App: React.FC = () => {
   return (
-    <div className="bg-black text-white px-10 m-0">
+    <div className="bg-black text-white px-10">
       <Navbar />
       <ToastContainer />
       <Routes>

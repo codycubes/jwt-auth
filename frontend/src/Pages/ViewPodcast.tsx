@@ -70,7 +70,7 @@ const ViewPodcast: React.FC = () => {
 
   return (
     <div className="w-full h-full min-h-screen p-8 text-white">
-      <div className="flex items-center mb-8">
+      <div className="flex items-center mt-32 mb-8">
         <img
           src={podcast.image}
           alt="Podcast Cover"

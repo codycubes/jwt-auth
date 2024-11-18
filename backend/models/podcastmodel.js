@@ -14,7 +14,7 @@ const podcastSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
-		duration: {
+		genre: {
 			type: String,
 			required: true,
 		},
