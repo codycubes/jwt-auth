@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 flex justify-between items-center py-5 px-6 bg-transparent text-white transition-transform duration-300 ${
+      className={`relative top-0 left-0 w-full z-50 flex justify-between items-center py-5 px-6 bg-transparent text-white transition-transform duration-300 ${
         showNavbar ? "transform translate-y-0" : "transform -translate-y-full"
       }`}
     >

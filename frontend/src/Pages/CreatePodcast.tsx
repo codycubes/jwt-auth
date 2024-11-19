@@ -25,6 +25,12 @@ const CreatePodcast: React.FC = () => {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      const maxSize = 5 * 1024 * 1024; // 5MB
+      if (file.size > maxSize) {
+        toast.error("File is too large. Max size is 5MB");
+        return;
+      }
+
       const reader = new FileReader();
       reader.onloadend = () => {
         setNewPodcast({ ...newPodcast, image: reader.result as string });
@@ -47,16 +53,18 @@ const CreatePodcast: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center text-white font-raleway flex-col p-6">
-      <Link to={'/'}>
-        <button className="w-10 h-10 bg-gray-800 rounded-full flex justify-center items-center mb-6">
-          <span className="text-5xl hover:scale-150">←</span>
-        </button>
-      </Link>
+    <div className="h-full flex items-center justify-center text-white font-raleway flex-col p-6">
+      <div className="flex mt-20 items-center justify-between w-full px-6">
+        <Link to={'/'}>
+          <button className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center">
+            <span className="text-5xl hover:scale-150">←</span>
+          </button>
+        </Link>
 
-      <h2 className="text-7xl my-10 font-black text-center">Create Podcast</h2>
+        <h2 className="text-7xl font-black text-center w-full">Create Podcast</h2>
+      </div>
 
-      <form className="space-y-6" onSubmit={handleAddPodcast}>
+      <form className="space-y-6 w-3/4 mt-10" onSubmit={handleAddPodcast}>
         <div>
           <label className="block text-sm font-bold" htmlFor="name">
             Name

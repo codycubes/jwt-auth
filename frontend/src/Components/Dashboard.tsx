@@ -4,9 +4,10 @@ import { RootState } from '../store';
 import { usePodcastStore } from '../store/podcast';
 import { CgAdd } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
+import PodcastCategories from './Categories';
 
 interface CardProps {
-  _id: string;"?>:lm"
+  _id: string;
   name: string;
   host: string;
   description: string;
@@ -16,7 +17,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ _id, name, genre, host, description, image }) => (
   <Link to={`/podcast/${_id}`}>
-    <div className="rounded-lg shadow-md text-start overflow-hidden">
+    <div className="rounded-lg shadow-md text-start overflow-hidden p-4 hover:bg-slate-900">
       <img src={image} alt={name} className="w-full h-32 sm:h-48 object-cover" />
       <div className="py-4">
         <h2 className="font-bold text-lg">{name}</h2>
@@ -39,11 +40,13 @@ const Dashboard: React.FC = () => {
   console.log("podcasts", podcasts); // Log podcasts to identify missing _id
 
   return (
-    <div className="container font-raleway h-full p-4">
+    <div className="container font-oswald h-full p-4">
       <div className='flex justify-between mt-28 text-3xl font-bold mb-10'>
-        <h2 className="">Browse By Genre</h2>
+        <h2 className="">Categories</h2>
         <h2 className='text-base underline'>Show all</h2>
       </div>
+
+      <PodcastCategories />
       
       <section className="mb-8">
         <Link to={'/createpodcast'}>
@@ -57,36 +60,37 @@ const Dashboard: React.FC = () => {
           <h2 className='text-base underline'>Show all</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
           {podcasts.map((podcast) => (
             <Card
               key={podcast._id || podcast.name} // Provide fallback key
-              _id={podcast._id || "default_id"} // Provide fallback _id
-              name={podcast.name}
-              description={podcast.description}
-              image={podcast.image}
-              host={podcast.host}
-              genre={podcast.genre}
+              _id={podcast._id || "111"} // Provide fallback _id
+              name={podcast.name || "Unnamed Podcast"}
+              description={podcast.description || "No Description"}
+              image={podcast.image || "default_image_url"}
+              host={podcast.host || "Unknown Host"}
+              genre={podcast.genre || "Uncategorized"}
             />
           ))}
         </div>
       </section>
+
 
       <section className="mb-8">
         <div className='flex justify-between text-3xl font-bold mb-10'>
           <h2 className="">Popular Podcasts</h2>
           <h2 className='text-base underline'>Show all</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5">
           {podcasts.map((podcast) => (
             <Card
               key={podcast._id || podcast.name} // Provide fallback key
               _id={podcast._id || "default_id"} // Provide fallback _id
-              name={podcast.name}
-              description={podcast.description}
-              image={podcast.image}
-              host={podcast.host}
-              genre={podcast.genre}
+              name={podcast.name || "Unnamed Podcast"}
+              description={podcast.description || "No Description"}
+              image={podcast.image || "default_image_url"}
+              host={podcast.host || "Unknown Host"}
+              genre={podcast.genre || "Uncategorized"}
             />
           ))}
         </div>
@@ -97,16 +101,16 @@ const Dashboard: React.FC = () => {
           <h2 className="">Recommended For You</h2>
           <h2 className='text-base underline'>Show all</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5">
           {podcasts.map((podcast) => (
             <Card
               key={podcast._id || podcast.name} // Provide fallback key
               _id={podcast._id || "default_id"} // Provide fallback _id
-              name={podcast.name}
-              description={podcast.description}
-              image={podcast.image}
-              host={podcast.host}
-              genre={podcast.genre}
+              name={podcast.name || "Unnamed Podcast"}
+              description={podcast.description || "No Description"}
+              image={podcast.image || "default_image_url"}
+              host={podcast.host || "Unknown Host"}
+              genre={podcast.genre || "Uncategorized"}
             />
           ))}
         </div>
