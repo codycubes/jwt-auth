@@ -84,7 +84,7 @@ const ViewPodcast: React.FC = () => {
 
       <div className='flex gap-5'>
         <button className="bg-white text-black font-semibold py-2 px-4 rounded-full shadow-md hover:bg-gray-200">
-          Following
+          Watch
         </button>
 
         <button onClick={openEditPopup} className="bg-white text-black font-semibold py-2 px-4 rounded-full shadow-md hover:bg-gray-200">

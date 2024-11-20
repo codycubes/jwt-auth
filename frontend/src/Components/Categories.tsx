@@ -20,12 +20,12 @@ const PodcastCategories: React.FC = () => {
   return (
     <div className="container mb-5">
       {/* <h1 className="text-3xl font-bold mb-4">Podcast Categories</h1> */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="flex gap-4">
         {categories.map((category) => (
-          <div key={category.name} className="bg-red-700  h-32 shadow rounded-lg overflow-hidden hover:scale-105 hover:cursor-pointer">
+          <div key={category.name} className="bg-red-600    shadow rounded-lg overflow-hidden hover:scale-105 hover:cursor-pointer">
             {/* <img src={category.imageUrl} alt={category.name} className="w-full h-32 object-cover" /> */}
-            <div className="p-4">
-              <h2 className="text-xl font-semibold">{category.name}</h2>
+            <div className="px-4 py-2">
+              <h2 className="text-sm font-semibold">{category.name}</h2>
             </div>
           </div>
         ))}
